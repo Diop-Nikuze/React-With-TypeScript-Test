@@ -1,15 +1,19 @@
 type TestProps = {
-  name: string;
-  role: string;
-  skills: string;
+  status: "loading" | "success" | "error";
 };
 
-const Test = (props: TestProps) => {
-  return (
-    <div>
-      My name is {props.name}, I'm {props.role} ( {props.skills} )
-    </div>
-  );
+const Test = ({ status }: TestProps) => {
+  let message;
+
+  if (status === "loading") {
+    message = "loading...";
+  } else if (status === "success") {
+    message = "Fetched successufully !";
+  } else if (status === "error") {
+    message = "Error, check your connection";
+  }
+
+  return <div>{message}</div>;
 };
 
 export default Test;
